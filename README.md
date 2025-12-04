@@ -1,6 +1,6 @@
 # Quiz dos Simpsons
 
-![Banner](https://wallpapercave.com/wp/wp4056840.jpg)
+![Banner](/img/banner.jpg)
 
 Teste seus conhecimentos sobre a maior família amarela de todos os tempos!
 
