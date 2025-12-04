@@ -1,32 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Roboto:wght@700&display=swap');
 
-/* DEIXA O SITE VELOZ NO CELULAR */
-body {
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    image-rendering: -webkit-optimize-contrast; /* melhora performance */
-}
-
-/* REMOVE A CASA PASSANDO (é o que mais pesa no mobile) */
-.casa-simpsons {
-    display: none !important; /* some no celular */
-}
-
-/* Mostra a casa só no desktop */
-@media (min-width: 768px) {
-    .casa-simpsons {
-        display: block !important;
-    }
-}
-
-/* Nuvens mais leves no mobile */
-@media (max-width: 768px) {
-    body::before {
-        background-size: cover;
-        animation-duration: 300s; /* mais lento = menos processamento */
-    }
-}
-
 
 * {
     margin: 0;
@@ -50,89 +23,17 @@ body {
     position: relative;
 }
 
-/* Nuvens grandes passando devagar devagar */
-body::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 300%;
-    height: 60%;
-    background: url('https://i.imgur.com/8g8p5nF.png') repeat-x;
-    background-size: auto 100%;
-    animation: nuvensLentas 180s linear infinite;
-    opacity: 0.7;
-    z-index: 1;
-}
-
-@keyframes nuvensLentas {
-    from {
-        transform: translateX(0);
-    }
-
-    to {
-        transform: translateX(-100%);
-    }
-}
-
-/* Casa dos Simpsons passando de vez em quando (a cereja do bolo) */
-.casa-simpsons {
-    position: absolute;
-    bottom: -100px;
-    left: -300px;
-    font-size: 180px;
-    opacity: 0.9;
-    pointer-events: none;
-    z-index: 2;
-    animation: casaPassando 35s linear infinite;
-}
-
-@keyframes casaPassando {
-    0% {
-        transform: translateX(-300px) rotate(0deg);
-    }
-
-    100% {
-        transform: translateX(calc(100vw + 400px)) rotate(5deg);
-    }
-}
-
-
-
-/* CASA DOS SIMPSONS PASSANDO (agora funciona!) */
-.casa-simpsons {
-    position: absolute;
-    bottom: 8vh;
-    left: -400px;
-    font-size: 180px;
-    opacity: 0.85;
-    pointer-events: none;
-    z-index: 2;
-    animation: casaPassando 42s linear infinite;
-    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
-}
-
-@keyframes casaPassando {
-    0% {
-        left: -400px;
-        transform: translateY(0) rotate(-2deg);
-    }
-
-    100% {
-        left: calc(100vw + 400px);
-        transform: translateY(-20px) rotate(3deg);
-    }
-}
 
 
 /* Container com entrada dramática */
 .container {
     background: rgba(0, 0, 0, 0.95);
-    padding: 3rem;
+    padding: 2rem;
     border-radius: 30px;
     width: 90%;
     max-width: 700px;
     text-align: center;
+    align-items: center;
     border: 12px solid #ffdd02;
     box-shadow: 0 0 60px rgba(255, 221, 2, 0.9);
     animation: entrada 1.5s ease-out forwards;
@@ -175,26 +76,7 @@ header h1 {
     }
 }
 
-/* Donuts caindo do céu de vez em quando */
-@keyframes donutCaindo {
-    0% {
-        transform: translateY(-200px) rotate(0deg);
-        opacity: 1;
-    }
 
-    100% {
-        transform: translateY(120vh) rotate(1080deg);
-        opacity: 0;
-    }
-}
-
-.donut {
-    position: absolute;
-    font-size: 3rem;
-    pointer-events: none;
-    z-index: 5;
-    animation: donutCaindo linear forwards;
-}
 
 /* Botões com animação de pulo quando aparecem */
 .options button {
@@ -431,12 +313,11 @@ header h1 {
 }
 
 
-
 /* RODAPÉ CENTRALIZADO – MESMA LARGURA E ESTILO DO QUIZ */
 .footer-centralizado {
     margin: 4rem auto 2rem;           /* centraliza mesmo no mobile */
-    width: 95%;
-    max-width: 720px;
+    width: 80%;
+    max-width: 520px;
     text-align: center;
     background: rgba(0, 0, 0, 0.95);
     padding: 2.5rem 2rem;
@@ -455,34 +336,38 @@ header h1 {
     gap: 1.5rem;
 }
 
+
+
 .social-icons {
     display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
     justify-content: center;
+    gap: 2.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
 }
 
 .social-btn {
-    width: 68px;
-    height: 68px;
+    width: 70px;
+    height: 70px;
     background: #ffdd02;
     color: #000;
-    font-size: 30px;
+    font-size: 32px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
     box-shadow: 0 8px 0 #000;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    font-weight: bold;
 }
 
 
 
 .social-btn:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 18px 0 #000;
-    background: #fff;
+    transform: translateY(-12px);
+    box-shadow: 0 20px 0 #000;
+    
 }
 
 
@@ -500,16 +385,8 @@ header h1 {
 }
 
 /* GARANTE QUE FUNCIONE NO CELULAR */
-@media (max-width: 768px) {
-    .footer-centralizado {
-        width: 92%;
-        padding: 2rem 1.5rem;
-        margin: 3rem auto 1.5rem;
-        border-width: 10px;
-    }
-    .social-btn {
-        width: 60px;
-        height: 60px;
-        font-size: 26px;
-    }
+@media (max-width: 480px) {
+    .main-wrapper { gap: 2rem; padding: 1.5rem 1rem; }
+    .container, .footer { border-width: 10px; }
+    .social-btn { width: 60px; height: 60px; font-size: 28px; }
 }
