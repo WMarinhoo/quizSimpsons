@@ -1,5 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Roboto:wght@700&display=swap');
 
+/* DEIXA O SITE VELOZ NO CELULAR */
+body {
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    image-rendering: -webkit-optimize-contrast; /* melhora performance */
+}
+
+/* REMOVE A CASA PASSANDO (é o que mais pesa no mobile) */
+.casa-simpsons {
+    display: none !important; /* some no celular */
+}
+
+/* Mostra a casa só no desktop */
+@media (min-width: 768px) {
+    .casa-simpsons {
+        display: block !important;
+    }
+}
+
+/* Nuvens mais leves no mobile */
+@media (max-width: 768px) {
+    body::before {
+        background-size: cover;
+        animation-duration: 300s; /* mais lento = menos processamento */
+    }
+}
+
+
 * {
     margin: 0;
     padding: 0;
@@ -464,13 +492,12 @@ header h1 {
     .social-icons { gap: 2rem; }
 }
 
+
 /* RODAPÉ CENTRALIZADO – MESMA LARGURA E ESTILO DO QUIZ */
 .footer-centralizado {
-    margin-top: 4rem;
+    margin: 4rem auto 2rem;           /* centraliza mesmo no mobile */
     width: 95%;
-    max-width: 720px;           /* mesma largura máxima do .container */
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 720px;
     text-align: center;
     background: rgba(0, 0, 0, 0.95);
     padding: 2.5rem 2rem;
@@ -479,6 +506,7 @@ header h1 {
     box-shadow: 0 0 60px rgba(255, 221, 2, 0.8);
     position: relative;
     z-index: 10;
+    box-sizing: border-box;
 }
 
 .footer-content {
@@ -490,53 +518,49 @@ header h1 {
 
 .social-icons {
     display: flex;
-    gap: 2.5rem;
+    gap: 2rem;
     flex-wrap: wrap;
     justify-content: center;
 }
 
 .social-btn {
-    width: 70px;
-    height: 70px;
+    width: 68px;
+    height: 68px;
     background: #ffdd02;
     color: #000;
-    font-size: 32px;
+    font-size: 30px;
     border-radius: 50%;
     display: flex;
+    align-items: center;
     justify-content: center;
     text-decoration: none;
     box-shadow: 0 8px 0 #000;
-    transition: all 0.35s ease;
-    font-weight: bold;
+    transition: transform 0.3s ease;
 }
 
-.social-btn:hover {
-    transform: translateY(-12px);
-    box-shadow: 0 20px 0 #000;
-    background: #fff;
+.social-btn:hover,
+.social-btn:active {
+    transform: translateY(-10px);
+    box-shadow: 0 18px 0 #000;
 }
-
-/* Cores ao passar o mouse (opcional, fica lindo) */
-.social-btn.github:hover    { background: #333; color: #fff; }
-.social-btn.instagram:hover { background: #E4405F; color: #fff; }
-.social-btn.linkedin:hover  { background: #0077B5; color: #fff; }
 
 .footer-text {
     color: #ffdd02;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin: 0;
-    text-shadow: 2px 2px 4px #000;
 }
 
-/* Mobile */
-@media (max-width: 480px) {
+/* GARANTE QUE FUNCIONE NO CELULAR */
+@media (max-width: 768px) {
     .footer-centralizado {
+        width: 92%;
         padding: 2rem 1.5rem;
+        margin: 3rem auto 1.5rem;
         border-width: 10px;
     }
     .social-btn {
         width: 60px;
         height: 60px;
-        font-size: 28px;
+        font-size: 26px;
     }
 }
