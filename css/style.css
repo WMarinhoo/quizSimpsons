@@ -401,3 +401,142 @@ header h1 {
         font-size: 1rem;
     }
 }
+
+/* ===== RODAPÉ COM ÍCONES CENTRALIZADOS ===== */
+.footer-social {
+    margin-top: 4rem;
+    padding: 2rem 1rem;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.9);
+    border-top: 10px solid #ffdd02;
+    position: relative;
+    z-index: 10;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.social-btn {
+    width: 70px;
+    height: 70px;
+    background: #ffdd02;
+    color: #000;
+    font-size: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 8px 0 #000;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.social-btn:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 18px 0 #000;
+    background: #fff;
+}
+
+/* Cores específicas (opcional – fica mais bonito) */
+.social-btn.github:hover    { background: #333; color: #fff; }
+.social-btn.instagram:hover { background: #E4405F; color: #fff; }
+.social-btn.linkedin:hover  { background: #0077B5; color: #fff; }
+
+.footer-text {
+    color: #ffdd02;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Responsivo mobile */
+@media (max-width: 480px) {
+    .social-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 28px;
+    }
+    .social-icons { gap: 2rem; }
+}
+
+/* RODAPÉ CENTRALIZADO – MESMA LARGURA E ESTILO DO QUIZ */
+.footer-centralizado {
+    margin-top: 4rem;
+    width: 95%;
+    max-width: 720px;           /* mesma largura máxima do .container */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.95);
+    padding: 2.5rem 2rem;
+    border-radius: 30px;
+    border: 12px solid #ffdd02;
+    box-shadow: 0 0 60px rgba(255, 221, 2, 0.8);
+    position: relative;
+    z-index: 10;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.8rem;
+}
+
+.social-icons {
+    display: flex;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.social-btn {
+    width: 70px;
+    height: 70px;
+    background: #ffdd02;
+    color: #000;
+    font-size: 32px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 8px 0 #000;
+    transition: all 0.35s ease;
+    font-weight: bold;
+}
+
+.social-btn:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 0 #000;
+    background: #fff;
+}
+
+/* Cores ao passar o mouse (opcional, fica lindo) */
+.social-btn.github:hover    { background: #333; color: #fff; }
+.social-btn.instagram:hover { background: #E4405F; color: #fff; }
+.social-btn.linkedin:hover  { background: #0077B5; color: #fff; }
+
+.footer-text {
+    color: #ffdd02;
+    font-size: 1.2rem;
+    margin: 0;
+    text-shadow: 2px 2px 4px #000;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .footer-centralizado {
+        padding: 2rem 1.5rem;
+        border-width: 10px;
+    }
+    .social-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 28px;
+    }
+}
