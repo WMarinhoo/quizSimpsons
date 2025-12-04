@@ -19,6 +19,7 @@ const questions = [
 let current = 0;
 let score = 0;
 
+// Elementos
 const questionEl = document.getElementById("question");
 const optionsEl = document.getElementById("options");
 const nextBtn = document.getElementById("nextBtn");
@@ -26,73 +27,84 @@ const progressText = document.getElementById("progress-text");
 const resultEl = document.getElementById("result");
 const scoreEl = document.getElementById("score");
 const messageEl = document.getElementById("message");
-const correctSound = document.getElementById("correct");
-const wrongSound = document.getElementById("wrong");
-const woohooSound = document.getElementById("woohoo");
-const dohSound = document.getElementById("doh");
 
-// Variável para lembrar se a última resposta foi certa ou errada
-let ultimaRespostaCorreta = null; // true = acertou, false = errou, null = ainda não respondeu
+
+// SONS LOCAIS
+const somAcerto = document.getElementById("somAcerto"); // woo‑hoo
+const somErro = document.getElementById("somErro"); // d’oh
+let audioDesbloqueado = false;
+
+// Desbloqueia áudio no primeiro clique (OBRIGATÓRIO em 2025)
+document.body.addEventListener("click", () => {
+    if (!audioDesbloqueado) {
+        audioDesbloqueado = true;
+        somAcerto.load();
+        somErro.load();
+    }
+}, { once: true });
 
 function loadQuestion() {
     const q = questions[current];
     questionEl.textContent = q.q;
     progressText.textContent = `Pergunta ${current + 1} de ${questions.length}`;
     optionsEl.innerHTML = "";
+
     q.o.forEach((option, i) => {
         const btn = document.createElement("button");
         btn.textContent = option;
         btn.onclick = () => selectAnswer(i, btn);
         optionsEl.appendChild(btn);
     });
+
     nextBtn.disabled = true;
     nextBtn.textContent = "Próxima pergunta";
 }
 
-
 function selectAnswer(selected, btn) {
-    const correct = questions[current].a;
+    // Evita clique duplo
+    if (!nextBtn.disabled) return;
 
-    // Evita clicar duas vezes
-    if (nextBtn.disabled === false) return;
-    if (selected === correct) {
+    const correctIdx = questions[current].a;
+
+    // Remove classes antigas (limpeza)
+    [...optionsEl.children].forEach(b => b.classList.remove("correct", "wrong"));
+
+    if (selected === correctIdx) {
+        // ACERTOU → Woo‑hoo!
         score++;
         btn.classList.add("correct");
-        correctSound.play();
+
+        if (audioDesbloqueado) {
+            somAcerto.currentTime = 0;        // reinicia do começo
+            somAcerto.play().catch(e => console.log("Erro ao tocar woo‑hoo:", e));
+        }
+
     } else {
+        // ERROU → D’oh!
         btn.classList.add("wrong");
-        wrongSound.play();
-        optionsEl.children[correct].classList.add("correct");
+        optionsEl.children[correctIdx].classList.add("correct");
+
+        if (audioDesbloqueado) {
+            somErro.currentTime = 0;
+            somErro.play().catch(e => console.log("Erro ao tocar d’oh:", e));
+        }
     }
 
-    // ← AQUI ESTAVA O PROBLEMA! ←
-    [...optionsEl.children].forEach(b => {
-        b.disabled = true;
-        b.style.cursor = "default";
-    });
-    nextBtn.disabled = false;
-    nextBtn.textContent = "Próxima pergunta →";
-
-    // Desabilita todos os botões de opção
+    // Desabilita todas as opções
     [...optionsEl.children].forEach(b => {
         b.disabled = true;
         b.style.cursor = "default";
     });
 
-
-    // ===== AQUI ESTÁ A MÁGICA =====
+    // Última pergunta → vai direto pro resultado
     if (current === questions.length - 1) {
-        // É a última pergunta → esconde o botão "Próxima" e vai direto pro resultado
-        nextBtn.style.display = "none";           // ou nextBtn.disabled = true;
-        setTimeout(showResult, 1800);             // dá tempo de ver a resposta certa/errada
+        nextBtn.style.display = "none";
+        setTimeout(showResult, 2200);
     } else {
-        // Ainda tem perguntas → mostra o botão normalmente
         nextBtn.disabled = false;
         nextBtn.textContent = "Próxima pergunta →";
-        nextBtn.style.display = "block";
     }
 }
-
 
 nextBtn.onclick = () => {
     current++;
@@ -103,65 +115,29 @@ nextBtn.onclick = () => {
     }
 };
 
-
-// ====== FUNÇÃO CORRIGIDA: mostra resultado com pontuação CERTA ======
 function showResult() {
     document.getElementById("quiz").classList.add("hidden");
     resultEl.classList.remove("hidden");
-
-    // CORREÇÃO: mostra pontuação correta (ex: 12 de 15)
     scoreEl.textContent = `${score} de ${questions.length}`;
 
     let frase = "";
-    let classe = "";
+    if (score === 15) frase = "PERFEITO! Você é o rei de Springfield!";
+    else if (score >= 12) frase = "INCRÍVEL! Quase perfeito!";
+    else if (score >= 9) frase = "Muito bom! Medalha de prata";
+    else if (score >= 6) frase = "Bom trabalho! Medalha de bronze";
+    else frase = "D’OH! Hora de rever os episódios!";
 
-    if (score === questions.length) {
-        frase = "PERFEITO! Você é o rei de Springfield! Troféu Medalha de ouro";
-        classe = "perfeito medalha-ouro";
-        soltarConfetes();
-        woohooSound.play();
-    } else if (score >= 13) {
-        frase = "INCRÍVEL! Quase perfeito! Medalha de ouro";
-        classe = "excelente medalha-ouro";
-        soltarConfetes();
-        woohooSound.play();
-    } else if (score >= 10) {
-        frase = "Muito bom! Você conhece bem a família amarela Medalha de prata";
-        classe = "excelente medalha-prata";
-    } else if (score >= 7) {
-        frase = "Bom trabalho! Tá no caminho certo Medalha de bronze";
-        classe = "bom medalha-bronze";
-    } else if (score >= 4) {
-        frase = "D’oh! Hora de rever os episódios!";
-        classe = "ruim doh";
-    } else {
-        frase = "D’OH!!! Maratona urgente dos Simpsons agora!";
-        classe = "ruim doh";
-        const dohAudio = new Audio("https://www.myinstants.com/media/sounds/doh_1.mp3");
-        dohAudio.volume = 0.9;
-        dohAudio.play();
-    }
-
-    messageEl.innerHTML = frase;
-    messageEl.className = classe;
+    messageEl.textContent = frase;
 }
 
-// ====== BOTÃO "JOGAR NOVAMENTE" – ZERA TUDO CORRETAMENTE ======
 document.getElementById("restartBtn").onclick = () => {
-    // Zera tudo de verdade
     current = 0;
     score = 0;
-
-    // Limpa classes e texto do resultado
-    messageEl.innerHTML = "";
-    messageEl.className = "";
-    scoreEl.textContent = "";
-
-    // Volta pra tela do quiz
     resultEl.classList.add("hidden");
     document.getElementById("quiz").classList.remove("hidden");
-
-    // Recarrega a primeira pergunta
+    nextBtn.style.display = "block";
     loadQuestion();
 };
 
+// Inicia o jogo
+loadQuestion();
