@@ -20,7 +20,7 @@ Teste seus conhecimentos sobre a maior família amarela de todos os tempos!
 2. Abra o `index.html` no navegador
 
 ## Deploy (GitHub Pages)
-https://seu-usuario.github.io/quiz-dos-simpsons
+https://wmarinhoo.github.io/quizSimpsons/
 
 ## Preview
 ![Preview](https://i.imgur.com/6qX9k2L.png)
