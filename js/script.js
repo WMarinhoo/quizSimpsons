@@ -29,6 +29,10 @@ const messageEl = document.getElementById("message");
 const correctSound = document.getElementById("correct");
 const wrongSound = document.getElementById("wrong");
 const woohooSound = document.getElementById("woohoo");
+const dohSound = document.getElementById("doh");
+
+// Variável para lembrar se a última resposta foi certa ou errada
+let ultimaRespostaCorreta = null; // true = acertou, false = errou, null = ainda não respondeu
 
 function loadQuestion() {
     const q = questions[current];
@@ -44,6 +48,7 @@ function loadQuestion() {
     nextBtn.disabled = true;
     nextBtn.textContent = "Próxima pergunta";
 }
+
 
 function selectAnswer(selected, btn) {
     const correct = questions[current].a;
