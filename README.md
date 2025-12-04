@@ -23,6 +23,6 @@ Teste seus conhecimentos sobre a maior família amarela de todos os tempos!
 https://wmarinhoo.github.io/quizSimpsons/
 
 ## Preview
-![Preview](https://i.imgur.com/6qX9k2L.png)
+![Preview](/img/fundo.png)
 
 Feito com amor por um fã dos Simpsons
