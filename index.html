@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz dos Simpsons | Até onde vai o seu amor pela família amarela?</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="shortcut icon" href="assets/simpsons-icon.png" type="image/x-icon">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Quiz dos Simpsons</h1>
+      <p>Teste seu conhecimento sobre a maior família de Springfield!</p>
+    </header>
+
+    <div id="quiz">
+      <div class="progress">
+        <span id="progress-text">Pergunta 1 de 15</span>
+      </div>
+      <h2 id="question"></h2>
+      <div id="options" class="options"></div>
+      <button id="nextBtn" class="btn" disabled>Próxima pergunta</button>
+    </div>
+
+    <div id="result" class="hidden">
+      <h2>Resultado Final</h2>
+      <p id="score"></p>
+      <p id="message"></p>
+      <button id="restartBtn" class="btn">Jogar Novamente</button>
+    </div>
+  </div>
+
+  <!-- Sons (arquivos pequenos, hospedados externamente pra não pesar) -->
+  <audio id="correct" src="https://assets.mixkit.co/sfx/preview/mixkit-correct-answer-reward-952.mp3"></audio>
+  <audio id="wrong" src="https://assets.mixkit.co/sfx/preview/mixkit-wrong-answer-fail-948.mp3"></audio>
+  <audio id="woohoo" src="https://www.myinstants.com/media/sounds/homer-woohoo.mp3"></audio>
+
+  <script src="js/script.js"></script>
+  <!-- SONS DOS SIMPSONS (hospedados externamente – não pesam nada) -->
+<audio id="intro" src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-coin-216.mp3"></audio>
+<audio id="correct" src="https://www.myinstants.com/media/sounds/cash-register-ka-ching.mp3"></audio>
+<audio id="wrong" src="https://www.myinstants.com/media/sounds/doh_1.mp3"></audio>
+<audio id="woohoo" src="https://www.myinstants.com/media/sounds/homer-woohoo.mp3"></audio>
+<audio id="excellent" src="https://www.myinstants.com/media/sounds/excelenteeee.mp3"></audio>
+<audio id="tada" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3"></audio>
+</body>
+</html>
