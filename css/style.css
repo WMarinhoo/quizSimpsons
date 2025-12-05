@@ -363,3 +363,24 @@ header h1 {
     .container, .footer { border-width: 10px; }
     .social-btn { width: 60px; height: 60px; font-size: 28px; }
 }
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.main-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    /* ← isso faz o card ficar no meio da tela */
+    align-items: center;
+    padding: 20px;              /* espaço nas bordas */
+    box-sizing: border-box;
+}
+
+.container, .footer {
+    max-width: 560px;           /* ← card menor */
+    width: 90%;
+}
