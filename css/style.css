@@ -8,6 +8,7 @@
 }
 
 body {
+    margin: 2rem;
     font-family: 'Gamja Flower', cursive;
     background: linear-gradient(135deg, #87CEEB, #000000);
     color: #ffdd02;
@@ -17,8 +18,7 @@ body {
     justify-content: center; /* Alinhar car de quiz no centro da tela */
     background: linear-gradient(to bottom, #87CEEB 0%, #B0E0E6 40%, #98FB98 100%);
     position: relative;
-    position: relative;
-    
+  
 }
 
 
@@ -26,9 +26,9 @@ body {
 /* Container com entrada dramática */
 .container {
     background: rgba(0, 0, 0, 0.95);
-    padding: 2rem;
+    padding: 0.1rem;
     border-radius: 30px;
-    width: 90%;
+    width: 70%;
     max-width: 700px;
     text-align: center;
     align-items: center;
