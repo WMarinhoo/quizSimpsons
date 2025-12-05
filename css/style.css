@@ -14,13 +14,11 @@ body {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
-    /* Alinhar car de quiz no centro da tela */
+    justify-content: center; /* Alinhar car de quiz no centro da tela */
     background: linear-gradient(to bottom, #87CEEB 0%, #B0E0E6 40%, #98FB98 100%);
     position: relative;
-    overflow-x: hidden;
-    overflow: hidden;
     position: relative;
+    
 }
 
 
